@@ -33,11 +33,21 @@ def read_file(filename):
         file = open(filename, 'r')
         file_content = file.read()
         print(file_content)
+        print("Do you want to add new amount? [Yes, No]\n")
+
     except:
         pass
     finally:
         file.close()
 
 
-# read_file('balance.txt')
-# show_menu()
+def update_balance(new_balance):
+    try:
+        with open('balance.txt', 'w') as f:
+            f.write(str(new_balance))
+    except IOError:
+        print("Error: file not found, or there is error in update the amount")
+
+
+def add_new_amount(new_balance):
+    pass
