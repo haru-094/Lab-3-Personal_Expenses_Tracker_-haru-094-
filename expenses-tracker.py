@@ -6,12 +6,14 @@ from datetime import datetime
 # Get the balance file path
 balance_file_path = 'balance.txt'
 
-# function to read the balance from balance file
+# Function that read the balance file
 
 
 def read_balance_file():
-
-    # create the file if not exist
+    """
+    Function that read the data exist in balance.txt
+    if not exist it will created and initailze the value to 0 as start point
+    """
     if not os.path.exists(balance_file_path):
         try:
             with open(balance_file_path, 'w') as f:
@@ -20,7 +22,7 @@ def read_balance_file():
             print("can't create the file")
             sys.exit(1)
         return 0.0
-    # read the amount form the
+
     try:
         with open(balance_file_path, 'r') as f:
             total = f.read().strip()
@@ -33,7 +35,10 @@ def read_balance_file():
 
 
 def update_balance(new_balance):
-
+    """
+    Function that update the balance it take new_balance as parameter
+    and then update the value in balance file
+    """
     try:
         with open(balance_file_path, 'w') as f:
             f.write(str(new_balance))
@@ -42,6 +47,10 @@ def update_balance(new_balance):
 
 
 def read_total_expenses():
+    """
+    Function that read all the expenses that have you done so far
+    every expenses file that created
+    """
     total = 0
     expenses_files = []
     for i in os.listdir('.'):
@@ -71,6 +80,10 @@ def read_balance_amount():
 
 
 def current_balance():
+    """
+    Fucntion that get the current balance then ask the user and prompt
+    if he want to add money
+    """
     balance = read_balance_file()
     expenses = read_total_expenses()
     remain_balance = balance - expenses
@@ -105,6 +118,10 @@ Available balance: ${remain_balance:.2f}
 
 
 def add_new_expense():
+    """
+    Function that add new expenses with the data it ask the user for 3
+    the name of item, the price, the date then it will add for in new file
+    """
     balance = read_balance_amount()
     print("Add New Expenses")
     print(f"Your current balance {balance}")
@@ -178,6 +195,10 @@ def add_new_expense():
 
 
 def view_search_expenses():
+    """
+    Function that will search for item or price then return the result if it exist
+    it will show menu then prompt the user
+    """
     print("""
 1. Search by item name
 2. Search by amount
@@ -257,6 +278,7 @@ def view_search_expenses():
             print("Error, only choice from 1 to 3")
 
 
+# main function
 if __name__ == '__main__':
     while True:
         try:
