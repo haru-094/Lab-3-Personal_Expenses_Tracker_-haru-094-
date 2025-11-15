@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from datetime import datetime
 
 
@@ -199,14 +200,15 @@ def view_search_expenses():
     Function that will search for item or price then return the result if it exist
     it will show menu then prompt the user
     """
-    print("""
+    while True:
+        try:
+            choice = int(input("""
+------ Seach menu ------
 1. Search by item name
 2. Search by amount
 3. Back to main menu
-        """)
-    while True:
-        try:
-            choice = int(input("choice from [1-3]\n"))
+choose from [1-3]
+"""))
         except ValueError:
             print("Error, need to be from 1 to 3")
             continue
@@ -236,6 +238,8 @@ def view_search_expenses():
                         print(f"can't read the {file_name} file")
                 if match_found == 0:
                     print("item not found")
+                    # empty_action = input("Press Enter Or ESC to return the previews menu\n")
+                    # time.sleep(2)
             else:
                 print("item must not be empty")
         # search for the item price
@@ -284,6 +288,7 @@ if __name__ == '__main__':
         try:
             choice = int(input(
                 '''
+------ Main Menu ------
 1) check the remaning balance
 2) View Expenseve
 3) Add New Expenseve
