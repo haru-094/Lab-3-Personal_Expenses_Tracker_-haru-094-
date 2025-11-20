@@ -70,6 +70,7 @@ elif [ "$user_input" -eq 2 ]; then
     else
         echo "NO file with this date"
     fi
+
 elif [ "$user_input" -eq 3 ]; then
     echo "Exit..."
     exit 0
