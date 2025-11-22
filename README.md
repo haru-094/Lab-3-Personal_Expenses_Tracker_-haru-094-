@@ -1,105 +1,89 @@
 Personal Expenses Tracker
-Project Overview
+📌 Project Overview
+This project is a command-line Personal Finance Tracker built using vanilla Python. It allows users to:
 
-This project is a command-line Personal Finance Tracker application built using vanilla Python. It allows users to manage daily expenses, track their remaining balance, and generate expense reports. Additionally, a companion Shell script (archive_expenses.sh) is provided to handle file organization, archiving, and automated searching of past records.
+Manage daily expenses
 
-File Structure
+Track remaining balance
 
-The repository consists of the following required files:
+Generate expense reports
 
-expenses-tracker.py: The main Python application logic.
+Additionally, a companion Shell script (archive_expenses.sh) is provided to handle file organization, archiving, and automated searching of past records.
 
-archive_expenses.sh: The shell script for archiving and searching.
+📂 File Structure
+expenses-tracker.py → Main Python application logic
 
-balance.txt: A text file storing the current numerical balance.
+archive_expenses.sh → Shell script for archiving and searching
 
-Part 1: Python Application (expenses-tracker.py)
+balance.txt → Stores the current numerical balance
 
-The Python application serves as the main interface for the user. It includes a loop-based menu system with the following features:
-
+🖥️ Part 1: Python Application (expenses-tracker.py)
 Features
+Check Remaining Balance
 
-Check Remaining Balance:
+Reads current funds from balance.txt
 
-Reads the current funds from balance.txt.
+Calculates total expenses and displays available balance
 
-Calculates total expenses and displays the Available Balance.
+Allows deposits (updates balance.txt)
 
-Allows the user to add funds (deposit), which updates the balance.txt file.
+View Expenses
 
-View Expenses:
+Search transactions by Item or Amount
 
-Provides a sub-menu for searching specific transactions.
+Add New Expense
 
-Search by Item: Find expenses by the name of the item purchased.
+Displays current balance before input
 
-Search by Amount: Find expenses that match a specific cost.
+Prompts for Date (YYYY-MM-DD), Item Name, and Amount
 
-Add New Expense:
+Validates against available balance
 
-Displays the current available balance before input.
+Saves expenses into expenses_YYYY-MM-DD.txt
 
-Prompts for a Date (YYYY-MM-DD), Item Name, and Amount.
+Updates balance automatically
 
-Validation: Prevents the user from spending more than their available balance.
+Exit
 
-Storage: Saves validated expenses into a file named expenses_YYYY-MM-DD.txt.
+Gracefully terminates the program
 
-Updates the main balance automatically upon success.
-
-Exit:
-
-Gracefully terminates the program.
-
-Part 2: Shell Script (archive_expenses.sh)
-
-The shell script handles system automation and file management.
-
+🛠️ Part 2: Shell Script (archive_expenses.sh)
 Features
+Directory Management → Creates archives/ folder if missing
 
-Directory Management: Automatically checks for an archives directory and creates it if it does not exist.
+Archiving → Moves daily expense files (expenses_*.txt) into archives/
 
-Archiving: Moves daily expense files (expenses_*.txt) from the root directory to the archives folder.
+Logging → Records archival operations with timestamps in archive_log.txt
 
-Logging: Records every archival operation with a timestamp in archive_log.txt.
+Search Capability → Search archives by date (e.g., 2024-11-07) and display file contents
 
-Search Capability: Enables the user to search the archives directory for a specific date (e.g., 2024-11-07) and display the content of that file in the terminal.
-
-Setup & Usage Instructions
-
+⚙️ Setup & Usage Instructions
 Prerequisites
+Python 3.x installed
 
-Python 3.x installed.
-
-A Bash terminal (Linux, macOS, Git Bash on Windows).
+Bash terminal (Linux, macOS, or Git Bash on Windows)
 
 1. Initial Configuration
+Create a starting balance file:
 
-Ensure you have a balance.txt file in the same directory as the script. It should contain a single starting number (e.g., 50000).
-
+bash
 echo "50000" > balance.txt
-
 2. Running the Python Tracker
-
-To start the application, run:
-
+bash
 python3 expenses-tracker.py
-
 Follow the on-screen menu prompts to add expenses or check your balance.
 
 3. Running the Shell Script
+Grant execution permissions:
 
-First, ensure the script has execution permissions:
-
+bash
 chmod +x archive_expenses.sh
-
 To Archive Files:
-Run the script without arguments to move current expense files to the archive folder:
 
+bash
 ./archive_expenses.sh
-
 To Search Archives:
-(Depending on your specific implementation, you might run it interactively or pass the data. Example below assumes interactive or argument-based):
 
+bash
 ./archive_expenses.sh
-# Follow prompts to enter a date (e.g., 2024-11-07) to view that specific file.
+# Enter a date (e.g., 2024-11-07) when prompted
